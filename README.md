@@ -40,7 +40,7 @@ ServerName loginapi.cungcap.net
 ServerAlias loginapi.cungcap.net 
 ```
 - Sau đó enable site bằng lệnh 
-> sudo a2ensite loginapi.cungcap.net.conf 
+> sudo a2ensite loginapi.cungcap.net.conf  
 > a2enmod rewrite
 - reload lại apache 
 > sudo service apache2 reload 
