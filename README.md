@@ -5,33 +5,33 @@
 > sudo apt-get update 
 - Cài đặt Apache 
 > sudo apt-get install apache2 
-- Các file lưu trữ được đặt trong thư mục /var/www/html 
-> ls /var/www/html 
+- Các file lưu trữ được đặt trong thư mục /var/www/html  
+> ls /var/www/html  
 - Cài đặt PHP
-> sudo apt-get install php libapache2-mod-php php-mcrypt&nbsp; 
-> sudo service apache2 restart&nbsp; 
+> sudo apt-get install php libapache2-mod-php php-mcrypt  
+> sudo service apache2 restart  
 - Cài đặt MySQL: trong quá trình cài đặt chương trình sẽ yêu cầu bạn nhập mật khẩu cho user root của MYSQL
 > sudo apt-get install mysql-server php-mysql 
 - Cài đặt phpMyAdmin: trong quá trình cài đặt chương trình sẽ yêu cầu bạn nhập mật khảu của user root MYSQL mà bạn đã khai báo ở bước trước
-> sudo apt-get install phpmyadmin&nbsp; 
-> sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf&nbsp;
-> sudo service apache2 restart&nbsp; 
+> sudo apt-get install phpmyadmin  
+> sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf  
+> sudo service apache2 restart  
 ### Cài đặt composer 
 > curl -s http://getcomposer.org/installer | php 
 - Kiểm tra composer.phar đã được cài đặt thành công chưa? 
-> php composer.phar&nbsp;
+> php composer.phar  
 > sudo mv composer.phar /usr/bin/composer 
 ### Cài đặt laravel 
-> cd /var/www/html&nbsp; 
-> composer create-project --prefer-dist laravel/laravel blog&nbsp;
+> cd /var/www/html  
+> composer create-project --prefer-dist laravel/laravel blog  
 - Sau khi cài đặt xong bạn hãy cho các thư mục có thể cần thiết 
-> chmod -R 755 /var/www/html/blog&nbsp; 
-> chmod -R 777 /var/www/html/blog/storage&nbsp;
+> chmod -R 755 /var/www/html/blog  
+> chmod -R 777 /var/www/html/blog/storage  
 ### Cài đặt địa chỉ tên miền 
 - Bạn cần trỏ Record A tên miền về địa chỉ ip của server và sau đó thao tác thêm tên miền trong server bằng các lệnh: 
-> cd /etc/apache2/sites-available/&nbsp; 
-> sudo cp 000-default.conf loginapi.cungcap.net.conf&nbsp; 
-> sudo vim loginapi.cungcap.net.conf&nbsp;
+> cd /etc/apache2/sites-available/  
+> sudo cp 000-default.conf loginapi.cungcap.net.conf  
+> sudo vim loginapi.cungcap.net.conf  
 - Thay đổi nội dung trong file loginapi.cungcap.net.conf như sau: 
 ```
 ServerAdmin admin@example.com
@@ -45,8 +45,8 @@ ServerAlias loginapi.cungcap.net
 - reload lại apache 
 > sudo service apache2 reload 
 ### Cài đặt JSON Web Token 
-> cd /var/www/html/blog&nbsp; 
-> composer require tymon/jwt-auth&nbsp; 
+> cd /var/www/html/blog  
+> composer require tymon/jwt-auth  
 - Cập nhật file config/app.php 
 ``` 
 'providers' => [
