@@ -4,9 +4,9 @@
 ### Sử dụng web api trực tuyến 
 **Đăng ký tài khoản** 
 - Truy cập vào địa chỉ: http://loginapi.cungcap.net và đăng ký tài khoản trực tuyến tại trang chủ 
-**Đăng nhập và lấy token** 
-- Địa chỉ đăng nhập và lấy token: http://loginapi.cungcap.net/api/login 
-**Lấy thông tin và cập nhật thông tin**
+**Đăng nhập và lấy token**  
+- Địa chỉ đăng nhập và lấy token: http://loginapi.cungcap.net/api/login  
+**Lấy thông tin và cập nhật thông tin**  
 Địa chỉ lấy thông tin tài khoản: http://loginapi.cungcap.net/api/user-info 
 Nhập thông tin token được lấy ở bước đăng nhập và nhập vào để lấy thông tin tài khoản của bạn. 
 
