@@ -2,17 +2,17 @@
 --- 
 ## HƯỚNG DẪN SỬ DỤNG 
 ### Sử dụng web api trực tuyến 
-**Đăng ký tài khoản**  
-- Truy cập vào địa chỉ: http://loginapi.cungcap.net và đăng ký tài khoản trực tuyến tại trang chủ 
-**Đăng nhập và lấy token**  
+#####Đăng ký tài khoản 
+- Truy cập vào địa chỉ: http://loginapi.cungcap.net và đăng ký tài khoản trực tuyến tại trang chủ  
+#####Đăng nhập và lấy token  
 - Địa chỉ đăng nhập và lấy token: http://loginapi.cungcap.net/api/login  
-**Lấy thông tin và cập nhật thông tin**  
+#####Lấy thông tin và cập nhật thông tin
 - Địa chỉ lấy thông tin tài khoản: http://loginapi.cungcap.net/api/user-info 
 - Nhập thông tin token được lấy ở bước đăng nhập và nhập vào để lấy thông tin tài khoản của bạn. 
 
 ### Sử dụng chương trình Postman 
 - Sử dụng chương trình Postman để thử nghiệm bằng cách tải ứng dụng cài đặt tại địa chỉ: [https://www.getpostman.com/apps](https://www.getpostman.com/apps)  
-**Đăng ký tài khoản**
+#####Đăng ký tài khoản
 - Địa chỉ đăng ký tài khoản mới http://loginapi.cungcap.net/api/register sử dụng phương thức POST 
 * *name:* Tên tài khoản (trường này có thể thay đổi)
 * *email:* Địa chỉ email tài khoản (trường này không thể thay đổi)
@@ -22,14 +22,14 @@
 * *password_confirmation:* Nhập lại mật khẩu 
 Sau khi nhập đầy đủ thông tin vào **Body** và gửi yêu cầu để đăng ký tài khoản mới. 
 
-**Đăng nhập và lấy thông tin Token**
+#####Đăng nhập và lấy thông tin Token
 Địa chỉ đăng nhập http://loginapi.cungcap.net/api/login, nhập địa chỉ email, password vào **Body** và sử dụng phương thức POST để gửi yêu cầu.  
 Sau khi gửi yêu cầu thành công, hệ thống sẽ trả về thông tin có giá trị của token. 
 
-**Lấy thông tin tài khoản**  
+#####Lấy thông tin tài khoản
 Địa chỉ lấy thông tin tài khoản http://loginapi.cungcap.net/api/user-info, nhập giá trị token vào **Body** đã được lấy ở bước đăng nhập và dùng phương thức POST để gửi yêu cầu lấy thông tin tài khoản. 
 
-**Cập nhật thông tin tài khoản** 
+#####Cập nhật thông tin tài khoản
 Địa chỉ cập nhật thông tin tài khoản http://loginapi.cungcap.net/api/user-update, nhập các thông tin yêu cầu cần thiết: 
 * **token:** nhập giá trị token 
 * **name:** Nhập mới tên tài khoản 
