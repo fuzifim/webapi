@@ -10,13 +10,27 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::post('api/auth/register', 'UserController@register');
-Route::post('api/auth/login', 'UserController@login');
+Route::get('/', array(
+	'as' => 'register',
+	'uses' => 'UserController@register')); 
+Route::post('api/register', array(
+	'as' => 'register.request',
+	'uses' => 'UserController@registerRequest')); 
+Route::get('api/login', array(
+	'as' => 'login',
+	'uses' => 'UserController@login')); 
+Route::post('api/login', array(
+	'as' => 'login.request',
+	'uses' => 'UserController@loginRequest')); 	
+Route::get('api/user-info', array(
+	'as' => 'user.info',
+	'uses' => 'UserController@userInfo')); 
+	
 Route::group(['middleware' => 'jwt.auth'], function () {
-    Route::get('api/user-info', 'UserController@getUserInfo'); 
-	Route::post('api/user-update', 'UserController@updateInfo');
+	Route::post('api/user-info', array(
+		'as' => 'user.info.request',
+		'uses' => 'UserController@userInfoRequest')); 
+	Route::post('api/user-update', array(
+		'as' => 'user.update.request',
+		'uses' => 'UserController@userUpdateRequest')); 
 });

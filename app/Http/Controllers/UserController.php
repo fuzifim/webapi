@@ -15,41 +15,99 @@ class UserController extends Controller
     public function __construct(User $user){
         $this->user = $user;
     }
-   
-    public function register(Request $request){
-        $user = $this->user->create([
-          'name' => $request->get('name'),
-          'email' => $request->get('email'), 
-		  'address' => $request->get('address'),
-		  'tel' => $request->get('tel'),
-          'password' => Hash::make($request->get('password'))
-        ]);
-
-        return response()->json([
-            'status'=> 200,
-            'message'=> 'User created successfully',
-            'data'=>$user
-        ]);
+	public function register(){
+		 return view('register');
+	}
+	public function login(){
+		 return view('login');
+	}
+	public function userInfo(){
+		 return view('info');
+	}
+    public function registerRequest(Request $request){
+		$messages = array(
+			'required' => 'Vui lòng nhập thông tin (*).',
+			'numeric' => 'Điện thoại phải dạng số',
+			'email' => 'Địa chỉ email không đúng', 
+			'confirmed'=>'Nhập lại mật khẩu không chính xác'
+		);
+		$rules = array(
+			'name' => 'required',
+			'email'=>'required|email',
+			'tel'=>'required|numeric',
+			'address'=>'required',
+			'password'=>'required|min:6|confirmed',
+			'password_confirmation'=>'required|same:password',
+		);
+		$validator = Validator::make($request->all(), $rules, $messages);
+		if ($validator->fails())
+		{
+			return response()->json(['status'=>false,
+				'error'=>$validator->errors(), 
+				'message'=>'Lỗi! '.$validator->errors()->first()
+			]);
+		}else{
+			
+			$user = $this->user->create([
+			  'name' => $request->get('name'),
+			  'email' => $request->get('email'), 
+			  'address' => $request->get('address'),
+			  'tel' => $request->get('phone'),
+			  'password' => Hash::make($request->get('password'))
+			]);
+			if($user){
+				return response()->json([
+					'status'=> true,
+					'message'=> 'User created successfully',
+					'data'=>$user
+				]);
+			}else{
+				return response()->json([
+					'status'=> false,
+					'message'=> 'Can not create user',
+				]);
+			}
+		}
     }
-    
-    public function login(Request $request){
+    public function loginRequest(Request $request){
         $credentials = $request->only('email', 'password');
         $token = null;
         try {
            if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json(['invalid_email_or_password'], 422);
+            return response()->json([
+				'status'=> false,
+				'message'=> 'invalid email or password'
+				]);
            }
         } catch (JWTAuthException $e) {
-            return response()->json(['failed_to_create_token'], 500);
+			return response()->json([
+				'status'=> false,
+				'message'=> 'failed to create token'
+				]);
         }
-        return response()->json(compact('token'));
+		return response()->json([
+			'status'=> true,
+			'token'=> $token, 
+			'message'=>'Đăng nhập thành công! '
+			]);
     }
 
-    public function getUserInfo(Request $request){
-        $user = JWTAuth::toUser($request->token);
-        return response()->json(['result' => $user]);
+    public function userInfoRequest(Request $request){
+        $user = JWTAuth::toUser($request->token); 
+		if($user){
+			return response()->json([
+			'status'=> true,
+			'user'=> $user, 
+			'message'=>'Lấy thông tin tài khoản thành công! '
+			]);
+		}else{
+			return response()->json([
+			'status'=> false,
+			'message'=> 'failed! token is required'
+			]);
+		}
     }
-	public function updateInfo(Request $request){
+	public function userUpdateRequest(Request $request){
         $user = JWTAuth::toUser($request->token); 
 		$messages = array(
 			'required' => 'Vui lòng nhập thông tin (*).',
@@ -66,8 +124,9 @@ class UserController extends Controller
 		$validator = Validator::make($request->all(), $rules, $messages);
 		if ($validator->fails())
 		{
-			return response()->json(['success'=>false,
-				'message'=>$validator->errors()
+			return response()->json(['status'=>false,
+				'error'=>$validator->errors(), 
+				'message'=>'Lỗi không thể cập nhật. '.$validator->errors()->first()
 			]);
 		}else{
 			$user->name=$request->name; 
@@ -75,7 +134,10 @@ class UserController extends Controller
 			$user->address=$request->address; 
 			$user->password=Hash::make($request->password);
 			$user->save(); 
-			return response()->json(['result' => $user]);
+			return response()->json(['status'=>true,
+				'message'=>'Cập nhật tài khoản thành công! ', 
+				'user'=>$user
+			]);
 		}
     }
 }  
