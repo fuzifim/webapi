@@ -36,7 +36,7 @@ Sau khi gửi yêu cầu thành công, hệ thống sẽ trả về thông tin c
 * **address:** Nhập mới địa chỉ tài khoản 
 * **tel:** Nhập mới số điện thoại tài khoản 
 * **password:** Nhập mật khẩu mới 
-* **password_confirmation:** Nhập lại mật khẩu mới 
+* **password_confirmation:** Nhập lại mật khẩu mới  
 Sau khi điền đầy đủ thông tin vào **Body** và sử dụng phương thức POST để gửi yêu cầu cập nhật thông tin tài khoản. 
 --- 
 
