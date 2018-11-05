@@ -19,7 +19,7 @@
 * *address:* Địa chỉ người dùng (trường này có thể thay đổi) 
 * *tel:* Số điện thoại tài khoản (trường này có thể thay đổi) 
 * *password:* Mật khẩu tài khoản (trường này có thể thay đổi) 
-* *password_confirmation:* Nhập lại mật khẩu 
+* *password_confirmation:* Nhập lại mật khẩu  
 Sau khi nhập đầy đủ thông tin vào **Body** và gửi yêu cầu để đăng ký tài khoản mới. 
 
 ##### Đăng nhập và lấy thông tin Token
