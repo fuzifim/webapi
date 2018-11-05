@@ -1,5 +1,5 @@
 # HƯỚNG DẪN SỬ DỤNG VÀ CÀI ĐẶT WEB API LẤY VÀ CẬP NHẬT THÔNG TIN NGƯỜI DÙNG 
-Sử dụng LAMP trên server Ubuntu linux,PHP 7.0.32, Mysql Ver 14.14, Apache, Laravel Framework  
+Sử dụng LAMP trên server Ubuntu linux, PHP 7.0.32, Mysql Ver 14.14, Apache, Laravel Framework  
 > Web Api sử dụng thư viện Json Web Token để bảo mật bằng token khi lấy thông tin và cập nhật thông tin tài khoản. 
 --- 
 ## HƯỚNG DẪN SỬ DỤNG 
